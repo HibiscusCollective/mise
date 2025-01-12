@@ -48,11 +48,12 @@ impl EnvResults {
                 }
             });
             let python_path = tv.map(|tv| {
-                tv.install_path()
-                    .join("bin")
-                    .join("python")
-                    .to_string_lossy()
-                    .to_string()
+                let mut path = tv.install_path();
+                if !cfg!(windows) {
+                    path = path.join("bin").join("python");
+                }
+
+                path.to_string_lossy().to_string()
             });
             let installed = tv
                 .map(|tv: &crate::toolset::ToolVersion| {
