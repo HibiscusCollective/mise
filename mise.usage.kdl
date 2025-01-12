@@ -162,7 +162,9 @@ cmd completion help="Generate shell completions" {
 cmd config help="Manage config files" {
     alias cfg
     alias toml hide=#true
+    after_long_help "Examples:\n\n    $ mise config ls\n    Path                        Tools\n    ~/.config/mise/config.toml  pitchfork\n    ~/src/mise/mise.toml        actionlint, bun, cargo-binstall, cargo:cargo-edit, cargo:cargo-insta\n"
     flag --no-header help="Do not print table header"
+    flag --tracked-configs help="List all tracked config files"
     flag "-J --json" help="Output in JSON format"
     cmd generate help="[experimental] Generate a mise.toml file" {
         alias g
@@ -186,6 +188,7 @@ cmd config help="Manage config files" {
         alias list
         after_long_help "Examples:\n\n    $ mise config ls\n    Path                        Tools\n    ~/.config/mise/config.toml  pitchfork\n    ~/src/mise/mise.toml        actionlint, bun, cargo-binstall, cargo:cargo-edit, cargo:cargo-insta\n"
         flag --no-header help="Do not print table header"
+        flag --tracked-configs help="List all tracked config files"
         flag "-J --json" help="Output in JSON format"
     }
     cmd set help="Set the value of a setting in a mise.toml file" {
@@ -455,6 +458,7 @@ cmd ls help="List installed and active tool versions" {
     flag --prefix help="Display versions matching this prefix" {
         arg <PREFIX>
     }
+    flag --prunable help="List only tools that can be pruned with `mise prune`"
     flag --no-header help="Don't display headers"
     arg "[INSTALLED_TOOL]..." help="Only show tool versions from [TOOL]" required=#false var=#true
 }
@@ -541,7 +545,7 @@ cmd plugins help="Manage plugins" {
     }
 }
 cmd prune help="Delete unused versions of tools" {
-    long_help "Delete unused versions of tools\n\nmise tracks which config files have been used in ~/.local/state/mise/tracked-configs\nVersions which are no longer the latest specified in any of those configs are deleted.\nVersions installed only with environment variables `MISE_<PLUGIN>_VERSION` will be deleted,\nas will versions only referenced on the command line `mise exec <PLUGIN>@<VERSION>`."
+    long_help "Delete unused versions of tools\n\nmise tracks which config files have been used in ~/.local/state/mise/tracked-configs\nVersions which are no longer the latest specified in any of those configs are deleted.\nVersions installed only with environment variables `MISE_<PLUGIN>_VERSION` will be deleted,\nas will versions only referenced on the command line `mise exec <PLUGIN>@<VERSION>`.\n\nYou can list prunable tools with `mise ls --prunable`"
     after_long_help "Examples:\n\n    $ mise prune --dry-run\n    rm -rf ~/.local/share/mise/versions/node/20.0.0\n    rm -rf ~/.local/share/mise/versions/node/20.0.1\n"
     flag "-n --dry-run" help="Do not actually delete anything"
     flag --configs help="Prune only tracked and trusted configuration links that point to non-existent configurations"
@@ -951,6 +955,7 @@ cmd version help="Display the version of mise" {
     alias v
     long_help "Display the version of mise\n\nDisplays the version, os, architecture, and the date of the build.\n\nIf the version is out of date, it will display a warning."
     after_long_help "Examples:\n\n    $ mise version\n    $ mise --version\n    $ mise -v\n    $ mise -V\n"
+    flag "-J --json" help="Print the version information in JSON format"
 }
 cmd watch help="Run task(s) and watch for changes to rerun it" {
     alias w

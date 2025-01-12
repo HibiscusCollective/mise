@@ -541,6 +541,8 @@ dtm.backends = [
     "ubi:devstream-io/devstream[exe=dtm]",
     "asdf:zhenyuanlau/asdf-dtm"
 ]
+dua.backends = ["aqua:Byron/dua-cli", "ubi:Byron/dua-cli[exe=dua]"]
+dua.test = ["dua --version", "dua {{version}}"]
 duf.backends = ["aqua:muesli/duf", "asdf:NeoHsu/asdf-duf"]
 dust.backends = ["ubi:bootandy/dust", "asdf:looztra/asdf-dust"]
 dvc.backends = ["asdf:mise-plugins/mise-dvc"]
@@ -663,6 +665,7 @@ gator.backends = [
 gauche.backends = ["asdf:mise-plugins/mise-gauche"]
 gcc-arm-none-eabi.backends = ["asdf:mise-plugins/mise-gcc-arm-none-eabi"]
 gcloud.backends = ["asdf:mise-plugins/mise-gcloud"]
+gdu.backends = ["aqua:dundee/gdu"]
 getenvoy.backends = ["asdf:mise-plugins/mise-getenvoy"]
 ghc.backends = ["asdf:mise-plugins/mise-ghcup"]
 ghcup.backends = [
@@ -898,10 +901,7 @@ janet.backends = ["asdf:mise-plugins/mise-janet"]
 java.backends = ["core:java"]
 jbang.backends = ["asdf:mise-plugins/jbang-asdf"]
 jfrog-cli.backends = ["asdf:mise-plugins/mise-jfrog-cli"]
-jib.backends = [
-    "ubi:GoogleContainerTools/jib[tag_regex=-cli]",
-    "asdf:joschi/asdf-jib"
-]
+jib.backends = ["asdf:joschi/asdf-jib"]
 jiq.backends = ["aqua:fiatjaf/jiq", "asdf:chessmango/asdf-jiq"]
 jj.aliases = ["jujutsu"]
 jj.backends = ["aqua:jj-vcs/jj", "ubi:jj-vcs/jj"]
@@ -1317,6 +1317,8 @@ pivnet.backends = [
     "asdf:mise-plugins/tanzu-plug-in-for-asdf"
 ]
 pivnet.test = ["pivnet version", ""] # version returns "dev" on windows
+pixi.backends = ["ubi:prefix-dev/pixi"]
+pixi.test = ["pixi -V", "pixi {{version}}"]
 pkl.backends = ["aqua:apple/pkl", "asdf:mise-plugins/asdf-pkl"]
 please.backends = [
     "aqua:thought-machine/please",

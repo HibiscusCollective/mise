@@ -774,6 +774,11 @@ const completionSpec: Fig.Spec = {
               isRepeatable: false,
             },
             {
+              name: "--tracked-configs",
+              description: "List all tracked config files",
+              isRepeatable: false,
+            },
+            {
               name: ["-J", "--json"],
               description: "Output in JSON format",
               isRepeatable: false,
@@ -825,6 +830,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-header",
           description: "Do not print table header",
+          isRepeatable: false,
+        },
+        {
+          name: "--tracked-configs",
+          description: "List all tracked config files",
           isRepeatable: false,
         },
         {
@@ -1350,6 +1360,11 @@ const completionSpec: Fig.Spec = {
             ),
             debounce: true,
           },
+        },
+        {
+          name: "--prunable",
+          description: "List only tools that can be pruned with `mise prune`",
+          isRepeatable: false,
         },
         {
           name: "--no-header",
@@ -2739,6 +2754,13 @@ const completionSpec: Fig.Spec = {
     {
       name: ["version", "v"],
       description: "Display the version of mise",
+      options: [
+        {
+          name: ["-J", "--json"],
+          description: "Print the version information in JSON format",
+          isRepeatable: false,
+        },
+      ],
     },
     {
       name: ["watch", "w"],
